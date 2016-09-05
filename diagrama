@@ -1,55 +1,62 @@
+
 Legenda:
-    - Formato de entidade: Entidade (atributos)
-    - Identificador único: negrito e sublinhado
-    - Referência: sublinhado e identificado posteriormente
 
+    Formato de entidade: Entidade (atributos)
+    Identificador único: negrito e sublinhado
+    Referência: sublinhado e identificado posteriormente
 
-Aluno (documento, nome, idade, telefone, email)
+Aluno (documento, nome, idade, telefone, e-mail)
 
+Curso(número, nome, câmpus)
 
-Curso(número, nome)
+    câmpus referencia Câmpus(nome)
 
 Matrícula(número, aluno, curso)
-aluno referencia Aluno(documento)
-curso referencia Curso(número)
 
+    aluno referencia Aluno(documento)
+    curso referencia Curso(número)
 
 DisciplinasCursadas( matrícula, disciplina)
-matrícula referencia Matrícula(número)
-disciplina referencia Disciplina(código)
 
-Horário(hora, dia da semana, Semana A/B,disciplina,semestre)
-disciplina referencia disciplina(código)
-semestre referencia semestre(codigo)
+    matrícula referencia Matrícula(número)
+    disciplina referencia Disciplina(código)
 
+Horário(hora, dia da semana, Semana A/B, anos, semestre)
 
-Pré-requisito(Obrigatório, Eixo, Carga horária mínima/máxima, disciplinascursadas)
-# disciplinacursadas referencia DisciplinasCursadas(código)
+    semestre referencia Semestre(semestre)
+    anos referencia Semestre(ano)
 
+Pré-requisito(Obrigatório, Eixo, CH mín)
 
+DisciplinasExigidas(disciplina, préRequisito)
 
+    disciplina referencia Disciplina(código)
+    préRequisito referencia Pré-requisito(obrigatório)
 
+PedidoDeMatrícula(sessão, CHmin, CHmáx, tipo, matrícula, disciplina)
 
-PedidoDeMatrícula(sessão,CHmin,CHmáx, tipo,matricula,disciplina)
-# matricula referencia Matricula(numero)
-# disciplina referencia disciplina(código)
+    matrícula referencia Matrícula(número)
+    disciplina referencia disciplina(código)
 
+Disciplina(código, nome, CH, fase, horário, dia da semana)
 
-Disciplina(código, nome, CH)
-# cursoCodigo referencia curso(código)
+    fase referencia Semestre(semestre)
+    horário referencia Horário(hora)
+    dia da semana referencia Horário(dia da semana)
 
+Professor(documento, nome, campus)
 
+    câmpus referencia Câmpus(nome)
 
-Professor(documento, nome)
+DisciplinasMinistradas(professor, disciplina)
 
+    disciplina referencia Disciplina(código)
+    professor referencia Professor(documento)
 
-Currículo(implantação,disciplinascursadas)
-# disciplinacursadas referencia DisciplinasCursadas(código)
+Currículo(implantação, curso)
 
+    curso referencia Curso(número)
 
 Campus(nome)
 
-
 Semestre(ano, semestre)
-
-
