@@ -30,6 +30,26 @@ Pré-requisito(Obrigatório, Eixo, CH mín, disciplina)
 
     disciplina referencia Disciplina(Nome)
     obrigatorio refrencia DisciplinasCursadas(disciplina)
+    
+Currículo(implantação, curso)
+
+    curso referencia Curso(número)
+
+Campus(nome)
+
+Semestre(ano, semestre)
+
+Disciplina(código, nome, CH, fase, horário, dia da semana, professor, prerequisito)
+    
+    prerequisito referencia Pré-requisito(Obrigatório)
+    professor referencia professor(Nome)
+    fase referencia Semestre(semestre)
+    horário referencia Horário(hora)
+    dia da semana referencia Horário(dia da semana)
+    
+Professor(documento, nome, campus)
+
+    câmpus referencia Câmpus(nome)
 
 DisciplinasExigidas(disciplina, préRequisito)
 
@@ -41,27 +61,7 @@ PedidoDeMatrícula(sessão, CHmin, CHmáx, tipo, matrícula, disciplina)
     matrícula referencia Matrícula(número)
     disciplina referencia disciplina(código)
 
-Disciplina(código, nome, CH, fase, horário, dia da semana, professor, prerequisito)
-    
-    prerequisito referencia Pré-requisito(Obrigatório)
-    professor referencia professor(Nome)
-    fase referencia Semestre(semestre)
-    horário referencia Horário(hora)
-    dia da semana referencia Horário(dia da semana)
-
-Professor(documento, nome, campus)
-
-    câmpus referencia Câmpus(nome)
-
 DisciplinasMinistradas(professor, disciplina)
 
     disciplina referencia Disciplina(código)
     professor referencia Professor(documento)
-
-Currículo(implantação, curso)
-
-    curso referencia Curso(número)
-
-Campus(nome)
-
-Semestre(ano, semestre)
