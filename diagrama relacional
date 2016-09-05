@@ -16,11 +16,6 @@ Matrícula(número, curso)
     número referencia Aluno(Matrícula)
     curso referencia Curso(número)
 
-DisciplinasCursadas( matrícula, disciplina)
-
-    matrícula referencia Matrícula(número)
-    disciplina referencia Disciplina(código)
-
 Horário(hora, dia da semana, Semana A/B, anos, semestre)
 
     semestre referencia Semestre(semestre)
@@ -65,3 +60,8 @@ DisciplinasMinistradas(professor, disciplina)
 
     disciplina referencia Disciplina(código)
     professor referencia Professor(documento)
+    
+DisciplinasCursadas( matrícula, disciplina)
+
+    matrícula referencia Matrícula(número)
+    disciplina referencia Disciplina(código)
