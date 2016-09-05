@@ -5,15 +5,15 @@ Legenda:
     Identificador único: negrito e sublinhado
     Referência: sublinhado e identificado posteriormente
 
-Aluno (documento, nome, idade, telefone, e-mail)
+Aluno (documento, nome, idade, telefone, e-mail, matrícula)
 
 Curso(número, nome, câmpus)
 
     câmpus referencia Câmpus(nome)
 
-Matrícula(número, aluno, curso)
+Matrícula(número, curso)
 
-    aluno referencia Aluno(documento)
+    número referencia Aluno(Matrícula)
     curso referencia Curso(número)
 
 DisciplinasCursadas( matrícula, disciplina)
@@ -26,7 +26,10 @@ Horário(hora, dia da semana, Semana A/B, anos, semestre)
     semestre referencia Semestre(semestre)
     anos referencia Semestre(ano)
 
-Pré-requisito(Obrigatório, Eixo, CH mín)
+Pré-requisito(Obrigatório, Eixo, CH mín, disciplina)
+
+    disciplina referencia Disciplina(Nome)
+    obrigatorio refrencia DisciplinasCursadas(disciplina)
 
 DisciplinasExigidas(disciplina, préRequisito)
 
@@ -38,8 +41,10 @@ PedidoDeMatrícula(sessão, CHmin, CHmáx, tipo, matrícula, disciplina)
     matrícula referencia Matrícula(número)
     disciplina referencia disciplina(código)
 
-Disciplina(código, nome, CH, fase, horário, dia da semana)
-
+Disciplina(código, nome, CH, fase, horário, dia da semana, professor, prerequisito)
+    
+    prerequisito referencia Pré-requisito(Obrigatório)
+    professor referencia professor(Nome)
     fase referencia Semestre(semestre)
     horário referencia Horário(hora)
     dia da semana referencia Horário(dia da semana)
