@@ -4,15 +4,15 @@ Legenda:
     Identificador único: negrito e sublinhado
     Referência: sublinhado e identificado posteriormente
 
-Aluno (documento, nome, idade, telefone, e-mail, matrícula)
+Aluno (documento, nome, idade, telefone, e-mail)
 
 Curso(número, nome, câmpus)
 
     câmpus referencia Câmpus(nome)
 
-Matrícula(número, curso)
+Matrícula(número, aluno, curso)
 
-    número referencia Aluno(Matrícula)
+    aluno referencia Aluno(documento)
     curso referencia Curso(número)
 
 Horário(hora, dia da semana, Semana A/B, anos, semestre)
