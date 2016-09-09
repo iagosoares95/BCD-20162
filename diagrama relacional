@@ -4,9 +4,9 @@ Legenda:
     Identificador único: negrito e sublinhado
     Referência: sublinhado e identificado posteriormente
 
-Aluno (documento, nome, idade, telefone, e-mail)
+Aluno (documento, nome, telefone, e-mail)
 
-Curso(número, nome, câmpus)
+Curso(número, nome, câmpus, chmínima, chmáxima)
 
     câmpus referencia Câmpus(nome)
 
@@ -15,29 +15,23 @@ Matrícula(número, aluno, curso)
     aluno referencia Aluno(documento)
     curso referencia Curso(número)
 
-Horário(hora, dia da semana, Semana A/B, anos, semestre)
+Horário(hrinício, hrtérmino, dia da semana, Semana A/B, disciplina, semestre,ano)
 
-    semestre referencia Semestre(semestre)
-    anos referencia Semestre(ano)
+    disciplina referencia Disciplina(código)
 
-Pré-requisito(Obrigatório, Eixo, CH mín, disciplina)
+Pré-requisito(Obrigatório, Eixo, pre-requisito, disciplina)
 
-    disciplina referencia Disciplina(Nome)
-    obrigatorio refrencia DisciplinasCursadas(disciplina)
+    disciplina referencia Disciplina()
+    pre-requisito refrencia DisciplinasCursadas(disciplina)
     
 Currículo(implantação, curso)
 
     curso referencia Curso(número)
 
-Campus(nome)
+Câmpus(nome)
 
-Semestre(ano, semestre)
-
-Disciplina(código, nome, CH, fase, horário, dia da semana, professor, prerequisito)
+Disciplina(código, nome, CH, CHmín, fase, horário, dia da semana, semana a/b)
     
-    prerequisito referencia Pré-requisito(Obrigatório)
-    professor referencia professor(Nome)
-    fase referencia Semestre(semestre)
     horário referencia Horário(hora)
     dia da semana referencia Horário(dia da semana)
     
@@ -50,7 +44,7 @@ DisciplinasExigidas(disciplina, préRequisito)
     disciplina referencia Disciplina(código)
     préRequisito referencia Pré-requisito(obrigatório)
 
-PedidoDeMatrícula(sessão, CHmin, CHmáx, tipo, matrícula, disciplina)
+PedidoDeMatrícula(sessão, tipo, matrícula, disciplina)
 
     matrícula referencia Matrícula(número)
     disciplina referencia disciplina(código)
