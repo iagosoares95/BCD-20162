@@ -6,7 +6,7 @@ create table aluno(
 );
 
 create table curso(
-  numero tinyint primary key,
+  numero smallint primary key,
   nome varchar(128) not null,
   campus varchar(32) not null,
   chminima unsigned smallint,
