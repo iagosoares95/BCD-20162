@@ -1,7 +1,7 @@
 create table aluno(
   id unsigned int auto_increment primary key,
   nome varchar(128) not null,
-  documento char(11),
+  documento char(11) unique not null,
   telefone unsigned bigint,
   email varchar(128)
 );
