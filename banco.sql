@@ -8,11 +8,11 @@ create table aluno(
 
 create table curso(
   id unsigned smallint auto_increment primary key,
-  numero smallint,
+  numero smallint unique not null,
   nome varchar(128) not null,
   campus varchar(32) not null,
-  chminima unsigned smallint,
-  chmaxima unsigned smallint,
+  chminima unsigned smallint not null,
+  chmaxima unsigned smallint not null,
   curriculo varchar(64),
   constraint fk_curso_campus_campus_id
   foreign key (campus) references campus(id),
@@ -24,14 +24,14 @@ create table curso(
 
 create table campus(
   id unsigned tinyint auto_increment primary key,
-  nome varchar(128)
+  nome varchar(128) not null
 );
 
 create table matricula(
   id unsigned int auto_increment primary key,
-  aluno char(11),
-  curso unsigned tinyint  not null,
-  numero char(10),
+  aluno unsigned int not null,
+  curso unsigned smalllint  not null,
+  numero bignint unique not null,
   constraint fk_matricula_aluno_aluno_id
   foreign key (aluno) references aluno(id),
   constraint fk_matricula_curso_curso_id
