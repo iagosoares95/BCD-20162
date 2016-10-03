@@ -4,36 +4,29 @@ Legenda:
     Identificador único: negrito e sublinhado
     Referência: sublinhado e identificado posteriormente
 
-Aluno (documento, nome, telefone, e-mail)
+Aluno (id, documento, nome, telefone, e-mail)
 
-Curso(número, nome, câmpus, chmínima, chmáxima)
+Curso(id, número, nome, câmpus, chmínima, chmáxima)
 
     câmpus referencia Câmpus(nome)
 
-Matrícula(número, aluno, curso)
+Matrícula(id, número, aluno, curso)
 
-    aluno referencia Aluno(documento)
-    curso referencia Curso(número)
+    aluno referencia Aluno(id)
+    curso referencia Curso(id)
 
 Horário(hrinício, hrtérmino, dia da semana, Semana A/B, disciplina, semestre,ano)
 
     disciplina referencia Disciplina(código)
-
-Pré-requisito(Obrigatório, Eixo, pre-requisito, disciplina)
-
-    disciplina referencia Disciplina()
-    pre-requisito refrencia DisciplinasCursadas(disciplina)
     
-Currículo(implantação, curso)
+Currículo(id, disciplina, implantação, curso)
 
-    curso referencia Curso(número)
+    curso referencia Curso(id)
+    disciplina referencia Disciplina(id)
 
-Câmpus(nome)
+Câmpus(id,nome)
 
-Disciplina(código, nome, CH, CHmín, fase, horário, dia da semana, semana a/b)
-    
-    horário referencia Horário(hora)
-    dia da semana referencia Horário(dia da semana)
+Disciplina(id,código, nome, CH, CHmín)
     
 Professor(documento, nome, campus)
 
