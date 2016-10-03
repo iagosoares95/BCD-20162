@@ -5,106 +5,89 @@ Aluno [shape=record]
 Matricula [shape=record]
 Curso [shape=record]
 Disciplina [shape=record]
-Horário [shape=record]
 Currículo [shape=record]
 Campus [shape=record]
-Semestre [shape=record]
-Pedidodematrícula [shape=record]
-Prérequisito [shape=record]
-Professor [shape=record]
+
 // Atributos
+idalun[shape=plaintext]
 email [shape=plaintext]
 telefone [shape=plaintext]
-idade [shape=plaintext]
 docaluno [shape=plaintext, label="Documento"]
-NomeAluno [shape=plaintext,label="Nome"]
-CH [shape=plaintext]
-nomedisc [shape=plaintext, label="Nome"]
-CHmínimapedido [shape=plaintext,label="CHminima"]
-CHmáxima [shape=plaintext]
-tipo [shape=plaintext]
-sessão [shape=plaintext]
+NomeAlunoAlun [shape=plaintext,label="Nome"]
+
+iddisc[shape=plaintext]
+CHDisc [shape=plaintext]
 CódigoDisciplina [shape=plaintext,label="Código"]
+nomeDisc [shape=plaintext, label="Nome"]
+CHmínimaDisc [shape=plaintext,label="CHminima"]
+
+idmatr[shape=plaintext]
 numatrícula [shape=plaintext]
-NomeCurso [shape=plaintext,label="Nome"]
+NumCursoMatr [shape=plaintext,label="Nome"]
+NomeAlunoMatr [shape=plaintext]
+
+idcurs[shape=plaintext]
 numcurso [shape=plaintext, label="Número"]
+NomeCursoCurs [shape=plaintext,label="Nome"]
 nomecampus [shape=plaintext, label="Nome"]
-NomeProfessor [shape=plaintext,label="Nome"]
-docprof [shape=plaintext, label="Documento"]
-SemanaAB [shape=plaintext,label="Semana AB"]
-hora [shape=plaintext]
-diadasem [shape=plaintext, label="Dia da semana"]
-semestre [shape=plaintext]
-Ano [shape=plaintext]
-CHmínimaprereq [shape=plaintext,label="CHminima"]
-obrigatorio [shape=plaintext]
-eixo [shape=plaintext]
-implantação [shape=plaintext]
+CHmáxima [shape=plaintext]
+CHmínimaCurs [shape=plaintext,label="CHminima"]
+
+idcurr[shape=plaintext]
+numcurso [shape=plaintext, label="Número"]
+numdisciplina [shape=plaintext]
+implantacao [shape=plaintext]
+
+idcamp[shape=plaintext]
+nomecamp[shape=plaintext]
+
 //Relacionamentos
-tem [shape=diamond]
-faz [shape=diamond]
-cursa [shape=diamond]
-oferta [shape=diamond]
-disponibiliza [shape=diamond]
-contém [shape=diamond]
-vinculado [shape=diamond]
-ministra [shape=diamond]
-exige [shape=diamond]
-lotado [shape=diamond]
-pertence [shape=diamond]
-possui [shape=diamond]
-agrega [shape=diamond]
+tem [shape=diamond]-
+contém [shape=diamond]-
+vinculado [shape=diamond]-
+pertence [shape=diamond]-
+possui [shape=diamond]-
+
 //Ligações
-Aluno -- idade
+Aluno -- idalun
 Aluno -- docaluno
 Aluno -- telefone
 Aluno -- email
-Aluno -- tem [label="1..N"]
-Aluno -- NomeAluno
-Matrícula -- faz [label="1..N"]
-Matrícula -- tem [label="1..N"]
-Matrícula -- cursa [label="0..N"]
+Aluno -- vinculado [label="1..N"]
+Aluno -- NomeAlunoAlun
+
+Matrícula -- possui [label="1..N"]
 Matrícula -- vinculado [label="1..N"]
 Matrícula -- numatricula
-Pedidodematrícula -- faz [label="1..N"]
-PedidodeMatrícula -- sessão
-PedidodeMatrícula -- tipo
-PedidodeMatrícula -- CHmáxima
-PedidodeMatrícula -- CHmínimapedido
-Semestre -- oferta [label="0..N"]
-Semestre -- disponibiliza [label="0..N"]
-Semestre -- semestre
-Semestre -- Ano
+Matricula -- idmatr
+Matricula -- NumCursoMatr
+Matrícula -- NomeAlunoMatr
+
 Curso -- numcurso
-Curso -- possui [label="1..N"]
-Curso -- vinculado [label="1..N"]
-Curso -- pertence [label="1"]
-Curso -- NomeCurso
-Currículo -- possui [label="1..N"]
-Currículo -- agrega [label="1..N"]
+Curso -- tem [label="1..N"]
+Curso -- pertence [label="1..N"]
+Curso -- possui [label="1"]
+Curso -- NomeCursoCurs
+Curso -- idcurs
+Curso -- nomecampus
+Curso -- CHmáxima
+Curso -- CHmínimaCurs
+
+Currículo -- pertence [label="1..N"]
+Currículo -- contém [label="1..N"]
 Currículo -- implantação
-Campus -- pertence [label="1..N"]
-Campus -- lotado [label="1..N"]
-Campus -- nomecampus
-Disciplina -- oferta [label="1..N"]
-Disciplina -- CH
-Disciplina -- nomedisc
+Currículo -- idcurr
+Currículo -- numcurso
+Currículo -- numdisciplina
+
+Campus -- tem [label="1..N"]
+Campus -- nomecamp
+Campus -- idcamp
+
+Disciplina -- contém [label="1..N"]
+Disciplina -- CHDisc
+Disciplina -- nomeDisc
 Disciplina -- CódigoDisciplina
-Disciplina -- contém [label="0..N"]
-Disciplina -- exige [label="0..N"]
-Disciplina -- ministra [label="0..N"]
-Disciplina -- agrega [label="1"]
-Disciplina -- cursa [label="0..N"]
-Horário -- hora
-Horário -- disponibiliza [label="0..N"]
-Horário -- diadasem
-Horário -- SemanaAB
-Professor -- lotado [label="1"]
-Professor -- ministra [label="1..N"]
-Professor -- NomeProfessor
-Professor -- docprof
-Prérequisito -- exige [label="0..N"]
-Prérequisito -- obrigatorio
-Prérequisito -- eixo
-Prérequisito -- CHmínimaprereq
+Disciplina -- iddisc
+Disciplina -- CHmínimaDisc 
 }
