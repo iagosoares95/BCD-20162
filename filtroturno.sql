@@ -9,7 +9,7 @@ SELECT horário.disciplina
 select * from filtro_turno;
 
 DELIMITER $$
-CREATE PROCEDURE get_disciplina_horario(tur varchar) # valor manhã/tarde/noite
+CREATE PROCEDURE get_disciplina_horario(tur varchar) # valor matutino/vespertino/noturno
 BEGIN
 SELECT horario.disciplina
   FROM horario
@@ -19,7 +19,7 @@ SELECT horario.disciplina
 END$$
 DELIMITER ;
 
-CALL get_disciplina_horario('manhã');
+CALL get_disciplina_horario('matutino');
 --------------------------------------------------------------
 drop view if exists filtro_turno
 
