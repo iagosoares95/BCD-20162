@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS campus(
 
 CREATE TABLE IF NOT EXISTS aluno(
 	id int unsigned auto_increment primary key,
+	ldap varchar(128) not null,
 	nome varchar(128) not null,
 	documento char(11) unique not null,
 	telefone bigint unsigned,
@@ -66,7 +67,8 @@ CREATE TABLE IF NOT EXISTS curriculo(
 	constraint fk_curriculo_curso_curso_id
     	foreign key(curso) references curso(id),
 	constraint fk_curriculo_disciplina_disciplina_id
-    	foreign key(disciplina) references disciplina(id)
+    	foreign key(disciplina) references disciplina(id),
+	CONSTRAINT implatação UNIQUE(implantacao, disciplina)
 );
 
 CREATE TABLE IF NOT EXISTS matricula(
@@ -74,6 +76,7 @@ CREATE TABLE IF NOT EXISTS matricula(
 	numero bigint unsigned unique not null,
 	aluno int unsigned not null,
 	curso smallint unsigned not null,
+	token char(32) unique,
 	constraint fk_matricula_aluno_aluno_id
     	foreign key(aluno) references aluno(id),
 	constraint fk_matricula_curso_curso_id
@@ -87,7 +90,8 @@ CREATE TABLE IF NOT EXISTS DisciplinasCursadas(
 	constraint fk_disciplinasCursadas_disciplina_disciplina_id
     	foreign key(disciplina) references disciplina(id),
 	constraint fk_disciplinaCursadas_matricula_matricula_id
-    	foreign key(matricula) references matricula(id)
+    	foreign key(matricula) references matricula(id),
+	CONSTRAINT matricula UNIQUE(matricula, disciplina)
 );
 
 CREATE TABLE IF NOT EXISTS PedidoDeMatricula(
@@ -124,7 +128,8 @@ CREATE TABLE IF NOT EXISTS MinistradoresDasDisciplinas(
 CREATE TABLE IF NOT EXISTS semestre(
 	id smallint unsigned auto_increment primary key,
 	ano smallint unsigned not null,
-    	metade boolean not null -- true = 1o semestre & false = 2o semestre
+   	metade boolean not null, -- true = 1o semestre & false = 2o semestre
+    	CONSTRAINT ano UNIQUE(ano, metade)
 );
 
 CREATE TABLE IF NOT EXISTS horario(
